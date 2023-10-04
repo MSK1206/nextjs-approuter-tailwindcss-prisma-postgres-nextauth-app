@@ -29,6 +29,7 @@
     "highlight.js": "^11.8.0",
     "microcms-js-sdk": "^2.6.1",
     "next": "13.5.4",
+    "next-auth": "^4.23.2",
     "prettier": "^3.0.3",
     "react": "^18",
     "react-dom": "^18",
