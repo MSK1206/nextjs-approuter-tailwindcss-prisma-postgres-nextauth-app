@@ -7,23 +7,6 @@ import type {
 } from 'microcms-js-sdk';
 import { notFound } from 'next/navigation';
 
-// ニュースの型定義
-export type News = {
-  id: string;
-  title: string;
-  description: string;
-  content: string;
-  thumbnail?: MicroCMSImage;
-  tag: Tags[];
-} & MicroCMSDate;
-
-// タグの型定義
-export type Tags = {
-  id: string;
-  name: string;
-} & MicroCMSContentId &
-  MicroCMSDate;
-
 // メタ情報の型定義
 export type Meta = {
   titleTemplate?: string;
@@ -31,10 +14,26 @@ export type Meta = {
   ogTitle?: string;
   ogDescription?: string;
   ogImage?: MicroCMSImage;
-  canonical?: string;
 };
 
-export type Article = News & MicroCMSContentId & MicroCMSDate;
+// タグの型定義
+export type Tag = {
+  id: string;
+  name: string;
+} & MicroCMSContentId &
+  MicroCMSDate;
+
+// ニュースの型定義
+export type Blog = {
+  id: string;
+  title: string;
+  description: string;
+  content: string;
+  thumbnail?: MicroCMSImage;
+  tags: Tag[];
+} & MicroCMSDate;
+
+export type Article = Blog & MicroCMSContentId & MicroCMSDate;
 
 if (!process.env.MICROCMS_SERVICE_DOMAIN) {
   throw new Error('MICROCMS_SERVICE_DOMAIN is required');
@@ -55,8 +54,8 @@ export const client = createClient({
 // ブログ一覧を取得
 export const getBlogList = async (queries?: MicroCMSQueries) => {
   const listData = await client
-    .getList<News>({
-      endpoint: 'news',
+    .getList<Blog>({
+      endpoint: 'blogs',
       queries,
     })
     .catch(notFound);
@@ -69,8 +68,8 @@ export const getBlogDetail = async (
   queries?: MicroCMSQueries,
 ) => {
   const detailData = await client
-    .getListDetail<News>({
-      endpoint: 'news',
+    .getListDetail<Blog>({
+      endpoint: 'blogs',
       contentId,
       queries,
     })
@@ -81,7 +80,7 @@ export const getBlogDetail = async (
 // カテゴリーの一覧を取得
 export const getCategoryList = async (queries?: MicroCMSQueries) => {
   const listData = await client
-    .getList<Tags>({
+    .getList<Tag>({
       endpoint: 'tags',
       queries,
     })
@@ -95,7 +94,7 @@ export const getCategoryDetail = async (
   queries?: MicroCMSQueries,
 ) => {
   const detailData = await client
-    .getListDetail<Tags>({
+    .getListDetail<Tag>({
       endpoint: 'tags',
       contentId,
       queries,
