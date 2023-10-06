@@ -18,7 +18,6 @@ export type Meta = {
 
 // タグの型定義
 export type Tag = {
-  id: string;
   name: string;
 } & MicroCMSContentId &
   MicroCMSDate;
