@@ -1,11 +1,14 @@
+// app titleTemplate
+export const TitleTemplate = 'Sample';
+
 // Root Page title
 export const Title = 'Home';
 
 // News Page title
-export const NewsTitle = 'News';
+export const BlogsTitle = 'Blog';
 
 // Tags Page title
-export const TagsTitle = 'Tags';
+export const TagsTitle = 'Tag';
 
 // Contact Page title
 export const ContactTitle = 'Contact';
