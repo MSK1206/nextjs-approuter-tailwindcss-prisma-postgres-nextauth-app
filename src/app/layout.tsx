@@ -1,5 +1,4 @@
 import './globals.css';
-import type { Metadata } from 'next';
 import { Zen_Antique } from 'next/font/google';
 
 const inter = Zen_Antique({
@@ -8,12 +7,6 @@ const inter = Zen_Antique({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-  title: 'Next.js + Prisma + Postgres + NextAuth App.',
-  description:
-    'Next.js + Prisma + Postgres + NextAuthで構成されたプロジェクトです。',
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -21,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <main className="min-h-screen">{children}</main>
+      </body>
     </html>
   );
 }
