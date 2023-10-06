@@ -1,4 +1,4 @@
-import './globals.css';
+import './styles/globals.css';
 import { Zen_Antique } from 'next/font/google';
 
 const inter = Zen_Antique({
