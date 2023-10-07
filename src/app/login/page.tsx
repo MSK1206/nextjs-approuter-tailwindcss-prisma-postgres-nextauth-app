@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import Form from '@/app/components/page/login/Form/Form';
+import Form from '@/app/components/page/sign/Form/Form';
 
 export default function Login() {
   return (
