@@ -8,7 +8,7 @@ export const revalidate = 0;
 
 export async function generateMetadata(): Promise<Metadata> {
   const canonicalUrl = process.env.NEXT_PUBLIC_CANONICAL_URL as string;
-  const ogUrl = process.env.NEXT_PUBLIC_BASE_URL as string
+  const ogUrl = process.env.NEXT_PUBLIC_BASE_URL as string;
   const data = await getMeta();
   if (!data) {
     return {};
@@ -43,7 +43,16 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Home() {
   return (
     <main className="flex min-h-screen items-center justify-center p-24">
-      <h1>まだ開発中です</h1>
+      <div>
+        <Image
+          src={'/mylogo.svg'}
+          alt={'mylogo'}
+          width={200}
+          height={200}
+          className=''
+          priority
+        />
+      </div>
     </main>
   );
 }
