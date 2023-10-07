@@ -11,6 +11,17 @@ export default function Form({ type }: { type: 'login' | 'register' }) {
   const router = useRouter();
 
   return (
+    
+      <div>
+        <button
+          onClick={() => signIn('github')}
+          type="button"
+          className="bg-slate-800 my-4 text-white p-3 rounded-lg"
+        >
+          Sign in with Github
+        </button>
+      </div>
+      <span>--- or ---</span>
     <form
       onSubmit={(e) => {
         e.preventDefault();
@@ -56,16 +67,6 @@ export default function Form({ type }: { type: 'login' | 'register' }) {
       }}
       className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 sm:px-16"
     >
-      <div>
-        <button
-          onClick={() => signIn('github')}
-          type="button"
-          className="bg-slate-800 my-4 text-white p-3 rounded-lg"
-        >
-          Sign in with Github
-        </button>
-      </div>
-      <span>--- or ---</span>
       <div>
         <label
           htmlFor="email"
