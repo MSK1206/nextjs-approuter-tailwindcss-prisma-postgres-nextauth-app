@@ -1,18 +1,24 @@
-import { withAuth } from 'next-auth/middleware';
+import { getToken } from 'next-auth/jwt';
+import { NextRequest, NextResponse } from 'next/server';
 
-export default withAuth({
-  callbacks: {
-    authorized: ({ token }) => {
-      return token?.role === 'admin';
-    },
-  },
-  // サインインのページ指定
-  pages: {
-    signIn: '/signIn',
-  },
-});
+export default async function middleware(req: NextRequest) {
+  // Get the pathname of the request (e.g. /, /protected)
+  const path = req.nextUrl.pathname;
 
-// signUP | api | signIn ページのリダイレクトから除外
-export const config = {
-  matcher: ['/((?!signUp|api|signIn).*)'],
-};
+  // If it's the root path, just render it
+  if (path === '/') {
+    return NextResponse.next();
+  }
+
+  const session = await getToken({
+    req,
+    secret: process.env.NEXTAUTH_SECRET,
+  });
+
+  if (!session && path === '/protected') {
+    return NextResponse.redirect(new URL('/login', req.url));
+  } else if (session && (path === '/login' || path === '/register')) {
+    return NextResponse.redirect(new URL('/protected', req.url));
+  }
+  return NextResponse.next();
+}
