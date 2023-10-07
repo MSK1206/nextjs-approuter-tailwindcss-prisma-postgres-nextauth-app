@@ -8,7 +8,7 @@ import { compare } from 'bcrypt';
 
 const prisma = new PrismaClient();
 
-export const AuthOptions: NextAuthOptions = {
+export const options: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GitHubProvider({
