@@ -49,9 +49,16 @@ export default function Home() {
           alt={'mylogo'}
           width={200}
           height={200}
-          className=''
+          className="animate-rotate-center"
           priority
         />
+        <Link
+          href="/protected"
+          prefetch={false} // workaround until https://github.com/vercel/vercel/pull/8978 is deployed
+          className="text-stone-400 underline hover:text-stone-200 transition-all"
+        >
+          Protected Page
+        </Link>
       </div>
     </main>
   );
